@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Depth Test</title>
+  <meta name="description" content="depth test">
+  <meta name="author" content="Kepler Warrington-Arroyo">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.min.js"></script>
+
+</head>
+
+<body>
+  <script type="text/javascript">
+
+    var x, y, z;
+
+function setup(){
+  createCanvas(windowWidth, windowHeight, WEBGL);
+	x = 0;
+  y = 0;
+  z = 0;
+}
+
+function draw(){
+  background(255, 255, 255, 255);
+  translate(-width/2, 0, -600);
+
+  // rotate the box based on accelerometer data
+  // we could use rotationX,Y here but demonstrating
+  // acceleration
+  x+=accelerationX*0.05;
+  y+=accelerationY*0.05;
+  z+=accelerationZ*0.05;
+  normalMaterial();
+  rotateX(x);
+  rotateY(y);
+  rotateZ(z);
+  box(200, 200, 200);
+
+  console.log(accelerationX);
+
+}
+
+  </script>
+</body>
+</html>
