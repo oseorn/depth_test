@@ -6,6 +6,16 @@ function setup(){
   DeviceMotionEvent.requestPermission()
   .then(response => {
     if (response != 'granted') {
+      console.log("Failed to obtain motion permission");
+      noLoop();
+    }
+  })
+  .catch(console.error);
+
+  DeviceOrientationEvent.requestPermission()
+  .then(response => {
+    if (response != 'granted') {
+      console.log("Failed to obtain orientation permission");
       noLoop();
     }
   })
