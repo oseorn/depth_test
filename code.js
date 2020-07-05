@@ -3,7 +3,7 @@ var x, y, z;
 function setup(){
   createCanvas(windowWidth, windowHeight, WEBGL);
 
-  DeviceMotionEven.requestPermission()
+  DeviceMotionEvent.requestPermission()
   .then(response => {
     if (response != 'granted') {
       noLoop();
