@@ -12,7 +12,7 @@ function setup(){
         needPermissionsRequest = true;
         askButton = createButton('Begin');
         askButton.size(windowWidth*6/8, windowHeight/8);
-        askButton.position(windowWidth/2 /*- askButton.width/2*/, windowHeight/2);
+        askButton.position(windowWidth/2 - askButton.width/2, windowHeight/2);
         askButton.mousePressed(() => {
           DeviceMotionEvent.requestPermission()
           .then(response => {
