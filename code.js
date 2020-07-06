@@ -19,19 +19,23 @@ function setup(){
           .then(response => {
             if (response != 'granted') {
               permissions = false;
-            }
-          }).catch(console.error);
+            } else {
 
-          DeviceOrientationEvent.requestPermission()
-          .then(response => {
-            if (response != 'granted') {
-              permissions = false;
+              DeviceOrientationEvent.requestPermission()
+              .then(response => {
+                if (response != 'granted') {
+                  permissions = false;
+                } else {
+                  askButton.remove();
+                }
+              }).catch(console.error);
+
             }
           }).catch(console.error);
         });
   }
 
-  if (permissions = true) askButton.remove();
+  //if (permissions = true) askButton.remove();
 
 }
 
