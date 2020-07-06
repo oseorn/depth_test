@@ -1,4 +1,5 @@
 var x, y, z;
+var askButton;
 
 function setup(){
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -29,6 +30,8 @@ function setup(){
           }).catch(console.error);
         });
   }
+
+  if (permissions = true) askButton.remove();
 
 }
 
