@@ -1,12 +1,16 @@
 var x, y, z;
 var askButton;
 
+var capture;
+
 function setup(){
   createCanvas(windowWidth, windowHeight, WEBGL);
 
 	x = 0;
   y = 0;
   z = 0;
+
+  angleMode(DEGREES);
 
   if (typeof DeviceMotionEvent.requestPermission === 'function' &&
       typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -35,24 +39,48 @@ function setup(){
         });
   }
 
-  //if (permissions = true) askButton.remove();
+  capture = createCapture({
+    audio: false,
+    video: {
+      width: windowHeight,
+      height: windowWidth,
+      facingMode: "environment"
+    }
+  }, function() {
+    console.log('capture ready.');
+  });
+  //capture = createCapture(VIDEO);
 
+  //capture.elt.setAttribute('playsinline', '');
+  capture.hide();
+  //capture.size(windowWidth, windowHeight);
 }
 
 function draw(){
-  background(255, 255, 255, 255);
-  translate(-width/2, 0, -600);
+  //background(capture);
+  push();
+  x += (0.5) * (accelerationX - pAccelerationX) * (deltaTime * deltaTime) + 0;//*0.05;
+  y += accelerationY;//*0.05;
+  z += accelerationZ;//*0.05;
+  normalMaterial();
+  rotateZ(rotationZ);
+  rotateX(rotationX);
+  rotateY(-rotationY);
+
+  translate(0, 0, -400 - x);
+  
+  box(200, 200, 200);
+  pop();
+
+  image(capture, - windowWidth/2, - windowHeight/2);
 
   // rotate the box based on accelerometer data
   // we could use rotationX,Y here but demonstrating
   // acceleration
-  x+=accelerationX*0.05;
-  y+=accelerationY*0.05;
-  z+=accelerationZ*0.05;
+
+  //rotateX(rotationX * 0.05);
+  //rotateY(rotationY * 0.05);
   normalMaterial();
-  rotateX(x);
-  rotateY(y);
-  rotateZ(z);
-  box(200, 200, 200);
+
 
 }
