@@ -19,30 +19,28 @@
   var needPermissionsRequest = false;
   var permissions = true;
 
-  function startup() {
-    if (typeof DeviceMotionEvent.requestPermission === 'function' &&
-        typeof DeviceOrientationEvent.requestPermission === 'function') {
-          needPermissionsRequest = true;
-          askButton = createButton('Begin');
-          askButton.size(windowWidth*6/8, windowHeight/8);
-          askButton.position(windowWidth/2 - drumButton.width/2, windowHeight/2);
-          askButton.mousePressed(() => {
-            DeviceMotionEvent.requestPermission()
-            .then(response => {
-              if (response != 'granted') {
-                permissions = false;
-              }
-            }).catch(console.error);
+  /*if (typeof DeviceMotionEvent.requestPermission === 'function' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function') {
+        needPermissionsRequest = true;
+        askButton = createButton('Begin');
+        askButton.size(windowWidth*6/8, windowHeight/8);
+        askButton.position(windowWidth/2 - drumButton.width/2, windowHeight/2);
+        askButton.mousePressed(() => {
+          DeviceMotionEvent.requestPermission()
+          .then(response => {
+            if (response != 'granted') {
+              permissions = false;
+            }
+          }).catch(console.error);
 
-            DeviceOrientationEvent.requestPermission()
-            .then(response => {
-              if (response != 'granted') {
-                permissions = false;
-              }
-            }).catch(console.error);
-          });
-    }
-  }
+          DeviceOrientationEvent.requestPermission()
+          .then(response => {
+            if (response != 'granted') {
+              permissions = false;
+            }
+          }).catch(console.error);
+        });
+  }*/
   //.catch(console.error)
 
   /*function onClick() {
@@ -67,7 +65,7 @@
 
   </script>
 
-  <!--<script type="text/javascript" src="code.js">
-  </script>-->
+  <script type="text/javascript" src="code.js">
+  </script>
 </body>
 </html>
