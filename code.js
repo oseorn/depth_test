@@ -3,23 +3,7 @@ var x, y, z;
 function setup(){
   createCanvas(windowWidth, windowHeight, WEBGL);
 
-  DeviceMotionEvent.requestPermission()
-  .then(response => {
-    if (response != 'granted') {
-      console.log("Failed to obtain motion permission");
-      noLoop();
-    }
-  })
-  .catch(console.error);
-
-  DeviceOrientationEvent.requestPermission()
-  .then(response => {
-    if (response != 'granted') {
-      console.log("Failed to obtain orientation permission");
-      noLoop();
-    }
-  })
-  .catch(console.error);
+  if (!(motionP && orientationP)) noLoop();
 
 	x = 0;
   y = 0;
