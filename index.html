@@ -16,12 +16,13 @@
 <body>
   <script type="text/javascript">
 
-  var motionP = false;
-  var orientationP = false;
+  var needPermissionsRequest = false;
+  var permissions = true;
 
   if (typeof DeviceMotionEvent.requestPermission === 'function' &&
       typeof DeviceOrientationEvent.requestPermission === 'function') {
-        askButton = createButton('Begin');
+        needPermissionsRequest = true;
+        /*askButton = createButton('Begin');
         askButton.size(windowWidth*6/8, windowHeight/8);
         askButton.position(windowWidth/2 - drumButton.width/2, windowHeight/2);
         askButton.mousePressed(() => {
@@ -38,9 +39,27 @@
               window.addEventListener('deviceorientation', deviceTurnedHandler, true)
             }
           }).catch(console.error);
-        });
+        });*/
   }
   //.catch(console.error)
+
+  function onClick() {
+    if (needPermissionsRequest && !permissions) {
+      DeviceMotionEvent.requestPermission()
+      .then(resM => {
+        if (resM != 'granted') {
+          permissions = false;
+        }
+      }).catch(console.error);
+
+      DeviceOrientationEvent.requestPermission()
+      .then(resO => {
+        if (resO != 'granted') {
+          permissions = false;
+        }
+      }).catch(console.error);
+    }
+  }
 
   </script>
 
